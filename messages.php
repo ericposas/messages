@@ -21,7 +21,6 @@ if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>Message Log</title>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="gs.js"></script>
 <link href='style.css' rel='stylesheet'>
 
