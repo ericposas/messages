@@ -1,2 +1,2 @@
 # Messages
-A drop in messaging ajax web app, anonymous username messages 
+A drop in messaging web app, anonymous username messages 
