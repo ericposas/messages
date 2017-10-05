@@ -9,7 +9,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
     $msg = filter_input(INPUT_POST, 'Msg', FILTER_DEFAULT);
     if(trim($msg) != '' && trim($_SESSION['User']) != ''){
-        if (!file_put_contents('msgs.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>", FILE_APPEND | LOCK_EX)) {
+        if (!file_put_contents('msgs.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>" . "\n", FILE_APPEND | LOCK_EX)) {
             echo "<div> Error: could not write to file. </div>";
         }
     }
@@ -72,8 +72,6 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
   var iframe = document.getElementById('iframe');
   var everyNSec = 5;
   setInterval(swapSrc, (everyNSec * 1000));
-  //setInterval(ajaxReq, (everyNSec * 1000));
-  //window.ajax_inprogress = false;
   function swapSrc() {
     function swap() {
       if (preloaded.style.display == 'none') {
@@ -88,29 +86,5 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     }
     swap();
     TweenLite.delayedCall(0.5, swap);
-  }
-  function ajaxReq() {
-    if(window.ajax_inprogress == false) {
-      window.ajax_inprogress = true;
-      var http = new XMLHttpRequest();
-      var url = "data.php";
-      <?php
-      if($msg){
-        echo "var params = 'data=" . $msg . "';";
-      } ?>
-      http.open("POST", url, true);
-      http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      http.onreadystatechange = function () {
-        if (http.readyState == 4 && http.status == 200) {
-          swapSrc();
-          window.ajax_inprogress = false;
-          var res = document.createElement('div');
-          res.innerHTML = http.response;
-          document.body.appendChild(res);
-          //alert(http.responseText);
-        }
-      }
-      http.send(params);
-    }
   }
 </script>
