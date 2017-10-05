@@ -71,9 +71,9 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
   var preloaded = document.getElementById('preloaded-iframe');
   var iframe = document.getElementById('iframe');
   var everyNSec = 5;
-  //setInterval(swapSrc, (everyNSec * 1000));
-  setInterval(ajaxReq, (everyNSec * 1000));
-  window.ajax_inprogress = false;
+  setInterval(swapSrc, (everyNSec * 1000));
+  //setInterval(ajaxReq, (everyNSec * 1000));
+  //window.ajax_inprogress = false;
   function swapSrc() {
     function swap() {
       if (preloaded.style.display == 'none') {
