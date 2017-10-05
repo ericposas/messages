@@ -22,6 +22,7 @@ html, body{
 }
 .small{
   font-family: monospace;
+  font-size: 11px;
   color: #999;
 }
 .sorry{

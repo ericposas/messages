@@ -74,28 +74,28 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 
 <script>
   window.onload = function () {
-  var preloaded = document.getElementById('preloaded-iframe');
-  var iframe = document.getElementById('iframe');
-  var everyNSec = 5;
-  document.getElementById('msg-area').focus();
-  swapSrc();
-  setInterval(swapSrc, (everyNSec * 1000));
-  function swapSrc() {
-    function swap() {
-      if (preloaded.style.display == 'none') {
-        iframe.src = preloaded.src;
-        iframe.style.display = 'none';
-        preloaded.style.display = 'block';
-        preloaded.contentWindow.scrollTo( 0, 999999 );
-      } else {
-        preloaded.src = iframe.src;
-        iframe.style.display = 'block';
-        preloaded.style.display = 'none';
-        iframe.contentWindow.scrollTo( 0, 999999 );
+    var preloaded = document.getElementById('preloaded-iframe');
+    var iframe = document.getElementById('iframe');
+    var everyNSec = 5;
+    document.getElementById('msg-area').focus();
+    swapSrc();
+    setInterval(swapSrc, (everyNSec * 1000));
+    function swapSrc() {
+      function swap() {
+        if (preloaded.style.display == 'none') {
+          iframe.src = preloaded.src;
+          iframe.style.display = 'none';
+          preloaded.style.display = 'block';
+          preloaded.contentWindow.scrollTo( 0, 999999 );
+        } else {
+          preloaded.src = iframe.src;
+          iframe.style.display = 'block';
+          preloaded.style.display = 'none';
+          iframe.contentWindow.scrollTo( 0, 999999 );
+        }
       }
+      swap();
+      TweenLite.delayedCall(0.5, swap);
     }
-    swap();
-    TweenLite.delayedCall(0.5, swap);
-  }
   }
 </script>
