@@ -21,7 +21,7 @@ if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>Message Log</title>
-<script src="gs.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <link href='style.css' rel='stylesheet'>
 
 <?php
