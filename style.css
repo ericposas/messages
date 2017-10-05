@@ -1,0 +1,45 @@
+html, body{
+  margin: 0;
+}
+.textarea{
+  width:99%;
+  height: 100px;
+  vertical-align: text-top;
+  margin: 0 1px 0 2px;
+}
+.user-input{
+  margin: 8px 0 0 8px;
+}
+#after-msg, #submit-index{
+  display: none;
+}
+#swap-btn{
+  margin: 8px 0 0 8px;
+}
+#submit-index{
+  font-size: 18px;
+  padding: 16px 36px;
+}
+.small{
+  font-family: monospace;
+  color: #999;
+}
+.sorry{
+  padding: 0 0 0 8px;
+}
+.send-msg-btn{
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  text-align: center;
+  display: block;
+}
+.send-msg-div{
+  width: 100%;
+}
+iframe{
+  margin: 0 1px 0 2px;
+  width:99%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
