@@ -46,8 +46,8 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
          "</button><br><br>".
          "<div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>";
 }?>
-<iframe id="preloaded-iframe" style="display:none;" src="msgs2.html"></iframe>
-<iframe id="iframe" style="display:block;" src="msgs2.html"></iframe>
+<iframe id="preloaded-iframe" style="display:none;" src="msgs2.html?v1.2"></iframe>
+<iframe id="iframe" style="display:block;" src="msgs2.html?v1.1"></iframe>
   <script>
     var _iframe = document.getElementById('iframe');
     _iframe.onload = function () {
