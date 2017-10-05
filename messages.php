@@ -64,7 +64,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
 if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     echo "<form method='post' action=" . $_SERVER['PHP_SELF'] . ">" .
          "<div class='user-input'>" . "User: " . $_SESSION['User'] . "<span class='small user-input'>type message below:</span></div>" .
-            "<textarea class='textarea' name='Msg'>" .
+            "<textarea id='msg-area' class='textarea' name='Msg'>" .
             "</textarea><br><br>" .
             "<div class='send-msg-div'><input class='send-msg-btn' type='submit' name='submit' value='send'></div>" .
          "</form>" .
@@ -73,9 +73,11 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 }?>
 
 <script>
+  window.onload = function () {
   var preloaded = document.getElementById('preloaded-iframe');
   var iframe = document.getElementById('iframe');
   var everyNSec = 5;
+  document.getElementById('msg-area').focus();
   swapSrc();
   setInterval(swapSrc, (everyNSec * 1000));
   function swapSrc() {
@@ -94,5 +96,6 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     }
     swap();
     TweenLite.delayedCall(0.5, swap);
+  }
   }
 </script>
