@@ -95,7 +95,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
         }
       }
       swap();
-      TweenLite.delayedCall(0.5, swap);
+      //TweenLite.delayedCall(0.5, swap);
     }
   }
 </script>

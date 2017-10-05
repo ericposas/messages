@@ -25,8 +25,6 @@ html, body{
 .small{
   font-family: monospace;
   font-size: 11px;
-  color: #DFDCE3;
-  /*color: #999;*/
 }
 .sorry{
   padding: 0 0 0 8px;
@@ -49,8 +47,46 @@ iframe{
 }
 
 
-/* THEME */
+/* THEMES */
+
+/* HACKER */
+html{
+  font-family: monospace;
+  font-weight: 400;
+  color: #20C20E;
+  background-color: #000;
+}
+iframe{
+  padding: 4px 4px;
+  background-color: #000;
+  border:1px solid rgba(255,255,255,0.2);
+}
+.msg{
+  color: #20C20E;
+  font-size: 14px;
+}
+.small{
+  color: rgba(255,255,255,0.2);
+}
+textarea{
+  font-size:14px;
+  color: #20C20E;
+  background-color:#000;
+  border:1px solid #20C20E;
+}
+button, input[type='submit'], input[type='text']{
+  font-family:monospace;
+  border:none;
+  color:#20C20E;
+  background-color:#000;
+  border:1px solid #20C20E;
+}
+
+
+/* MICHAELANGELO */
+/*
 @import url('https://fonts.googleapis.com/css?family=Mukta');
+/*
 html{
   font-family: 'Mukta', sans-serif;
   font-weight: 400;
@@ -60,6 +96,14 @@ html{
 iframe{
   border:none;
   background-color: #F7B733;
+}
+.msg{
+  color: #FFF;
+  font-size: 14px;
+  font-family: 'Mukta', sans-serif;
+}
+.small{
+  color: #DFDCE3;
 }
 textarea{
   color: #000;
@@ -77,3 +121,4 @@ button, input[type='submit']{
   color: #FFF;
   background-color: #F7B733;
 }
+*/
