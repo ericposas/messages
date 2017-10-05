@@ -9,7 +9,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
     $msg = filter_input(INPUT_POST, 'Msg', FILTER_DEFAULT);
     if(trim($msg) != '' && trim($_SESSION['User']) != ''){
-        if (!file_put_contents('msgs.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>" . "\n", FILE_APPEND | LOCK_EX)) {
+        if (!file_put_contents('msgs2.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>" . "\n", FILE_APPEND | LOCK_EX)) {
             echo "<div> Error: could not write to file. </div>";
         }
     }
@@ -21,6 +21,7 @@ if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>Message Log</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script src="gs.js"></script>
 <link href='style.css' rel='stylesheet'>
 
@@ -40,19 +41,14 @@ if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
 </script>
 <?php
 if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
-    echo "<- back";
-    echo "</button><br><br>";
+    echo "back</button><br><br>";
 }else{
     echo "set username".
          "</button><br><br>".
          "<div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>";
 }?>
-<iframe id="preloaded-iframe" style="display:none;" src="msgs.html"></iframe>
-<iframe id="iframe" style="display:block;" src="msgs.html"></iframe>
-<script>
-  document.getElementById("preloaded-iframe").onload = function () { this.contentWindow.scrollTo(0, 99999) };
-  document.getElementById("iframe").onload = function () { this.contentWindow.scrollTo(0, 99999) };
-</script>
+<iframe id="preloaded-iframe" style="display:none;" src="msgs2.html"></iframe>
+<iframe id="iframe" style="display:block;" src="msgs2.html"></iframe>
 <br>
 <br>
 <?php
@@ -71,6 +67,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
   var preloaded = document.getElementById('preloaded-iframe');
   var iframe = document.getElementById('iframe');
   var everyNSec = 5;
+  swapSrc();
   setInterval(swapSrc, (everyNSec * 1000));
   function swapSrc() {
     function swap() {
@@ -78,10 +75,12 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
         iframe.src = preloaded.src;
         iframe.style.display = 'none';
         preloaded.style.display = 'block';
+        preloaded.contentWindow.scrollTo( 0, 999999 );
       } else {
         preloaded.src = iframe.src;
         iframe.style.display = 'block';
         preloaded.style.display = 'none';
+        iframe.contentWindow.scrollTo( 0, 999999 );
       }
     }
     swap();
