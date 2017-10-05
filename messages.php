@@ -49,6 +49,16 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
 }?>
 <iframe id="preloaded-iframe" style="display:none;" src="msgs2.html"></iframe>
 <iframe id="iframe" style="display:block;" src="msgs2.html"></iframe>
+  <script>
+    var _iframe = document.getElementById('iframe');
+    _iframe.onload = function () {
+      _iframe.contentWindow.scrollTo( 0, 999999 );
+    }
+    var _pre = document.getElementById('preloaded-iframe');
+    _pre.onload = function () {
+      _pre.contentWindow.scrollTo( 0, 999999 );
+    }
+  </script>
 <br>
 <br>
 <?php
