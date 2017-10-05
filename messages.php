@@ -76,7 +76,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 <script>
   var preloaded = document.getElementById('preloaded-iframe');
   var iframe = document.getElementById('iframe');
-  var everyNSec = 5;
+  var everyNSec = 3;
   swapSrc();
   setInterval(swapSrc, (everyNSec * 1000));
   function swapSrc() {
@@ -94,6 +94,6 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       }
     }
     swap();
-    TweenLite.delayedCall(0.5, swap);
+    TweenLite.delayedCall(0.2, swap);
   }
 </script>
