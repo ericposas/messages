@@ -42,7 +42,7 @@
       <file leaf-file-name="messages.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/messages.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
+            <state relative-caret-position="384">
               <caret line="96" column="37" lean-forward="true" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
               <folding>
                 <element signature="n#style#0;n#iframe#0;n#button#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -261,7 +261,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45963000" />
+    <option name="totallyTimeSpent" value="46499000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,7 +750,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/messages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
+        <state relative-caret-position="384">
           <caret line="96" column="37" lean-forward="true" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
           <folding>
             <element signature="n#style#0;n#iframe#0;n#button#0;n#body#0;n#html#0;n#!!top" expanded="true" />
