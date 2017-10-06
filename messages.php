@@ -26,7 +26,7 @@ if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
 
 <?php
 if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
-    echo "<style>.msg{ display: none; }#iframe,#preloaded-iframe{ visibility:hidden; }</style>";
+    echo "<style>.msg{ display: none; }#posted-msgs-container,#iframe,#preloaded-iframe{ visibility:hidden; }</style>";
 }?>
 
 </head>
@@ -46,13 +46,9 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
          "</button><br><br>".
          "<div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>";
 }?>
-<iframe id="iframe" class="" style="display:block;" src="msgs.html" scrolling="no"></iframe>
-  <script>
-    var _iframe = document.getElementById('iframe');
-    _iframe.onload = function () {
-      _iframe.contentWindow.scrollTo( 0, 999999 );
-    }
-  </script>
+<div id="posted-msgs-container">
+  <div id="posted-msgs"></div>
+</div>
 <br>
 <br>
 <?php
@@ -70,16 +66,35 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 <script>
   window.onload = function () {
     var iframe = document.getElementById('iframe');
-    document.getElementById('msg-area').focus();
-    reloadSrc(1);
-    function reloadSrc(delay) {
-      function reloadThis(_delay) {
-        iframe.src = (iframe.src == 'msgs.html' ? 'msgs.html?v1.1.1' : iframe.src);
-        iframe.contentWindow.scrollTo(0, 999999);
-        TweenLite.delayedCall(_delay, function () {
-          reloadThis(_delay);
-        });
+    var msg_area = document.getElementById('msg-area');
+    var posted_msgs = document.getElementById('posted-msgs');
+    var posted_msgs_container = document.getElementById('posted-msgs-container');
+    msg_area.focus();
+    sendReq();
+    function sendReq() {
+      if(!window.requestProcessing || window.requestProcessing == false){
+        ajax_req();
+      }else{
+        TweenLite.delayedCall(3, sendReq);
       }
     }
+    //ajax
+    function ajax_req() {
+      window.requestProcessing = true;
+      var http = new XMLHttpRequest();
+      var cache_bust = new Date().getTime();
+      http.open("GET", "msgs.html?randstr="+cache_bust, true);
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          posted_msgs.innerHTML = '';
+          posted_msgs.innerHTML = http.responseText;
+          posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
+          window.requestProcessing = false;
+          sendReq();
+        }
+      };
+      http.send();
+    }
+
   }
 </script>

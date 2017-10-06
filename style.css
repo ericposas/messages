@@ -1,12 +1,12 @@
 /* FUNCTION, FORM */
 html, body{
-overflow-x: hidden;
-margin: 0;
+  overflow-x: hidden;
+  margin: 0;
 }
 iframe{
   margin: 0 0 0 0;
   width:98.5%;
-  height:400px;
+  height:300px;
   padding: 4px 4px;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -14,44 +14,53 @@ iframe{
 button, input[type='submit']{
   cursor: pointer;
 }
+#posted-msgs{
+  margin:8px 0 0 8px;
+  overflow-y: hidden;
+}
+#posted-msgs-container{
+  width:99%;
+  height:250px;
+  overflow-y: hidden;
+}
 #after-msg, #submit-index{
-display: none;
+  display: none;
 }
 #swap-btn{
-margin: 8px 0 0 8px;
+  margin: 8px 0 0 8px;
 }
 #submit-index{
-font-size: 18px;
-padding: 16px 36px;
+  font-size: 18px;
+  padding: 16px 36px;
 }
 .small{
-font-family: monospace;
-font-size: 11px;
+  font-family: monospace;
+  font-size: 11px;
 }
 .textarea{
-width:99%;
-height: 100px;
-vertical-align: text-top;
-margin: 0 0 0 0;
+  width:99%;
+  height: 100px;
+  vertical-align: text-top;
+  margin: 0 0 0 0;
 }
 .user-input{
-margin: 8px 0 0 8px;
+  margin: 8px 0 0 8px;
 }
 .sorry{
-padding: 0 0 0 8px;
+  padding: 0 0 0 8px;
 }
 .send-msg-btn{
-font-size: 20px;
-margin: 0 auto;
-padding: 20px 40px;
-text-align: center;
-display: block;
+  font-size: 20px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  text-align: center;
+  display: block;
 }
 .send-msg-div{
-width: 100%;
+  width: 100%;
 }
 .hidden{
-visibility: hidden;
+  visibility: hidden;
 }
 
 /* THEMES */
@@ -67,13 +76,6 @@ iframe{
   background-color: #000;
   border:1px solid rgba(255,255,255,0.2);
 }
-.msg{
-  color: #20C20E;
-  font-size: 14px;
-}
-.small{
-  color: rgba(255,255,255,0.2);
-}
 textarea{
   font-size:14px;
   color: #20C20E;
@@ -86,6 +88,16 @@ button, input[type='submit'], input[type='text']{
   color:#20C20E;
   background-color:#000;
   border:1px solid #20C20E;
+}
+.msg{
+color: #20C20E;
+font-size: 14px;
+}
+.small{
+color: rgba(255,255,255,0.2);
+}
+#posted-msgs-container{
+  border:1px solid rgba(255,255,255,0.2);
 }
 ::selection {
   background-color: #20C20E;
