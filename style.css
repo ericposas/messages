@@ -1,51 +1,58 @@
 /* FUNCTION, FORM */
 html, body{
-  overflow-x: hidden;
-  margin: 0;
-}
-.textarea{
-  width:100%;
-  height: 100px;
-  vertical-align: text-top;
-  margin: 0 0 0 0;
-}
-.user-input{
-  margin: 8px 0 0 8px;
-}
-#after-msg, #submit-index{
-  display: none;
-}
-#swap-btn{
-  margin: 8px 0 0 8px;
-}
-#submit-index{
-  font-size: 18px;
-  padding: 16px 36px;
-}
-.small{
-  font-family: monospace;
-  font-size: 11px;
-}
-.sorry{
-  padding: 0 0 0 8px;
-}
-.send-msg-btn{
-  font-size: 20px;
-  margin: 0 auto;
-  padding: 20px 40px;
-  text-align: center;
-  display: block;
-}
-.send-msg-div{
-  width: 100%;
+overflow-x: hidden;
+margin: 0;
 }
 iframe{
   margin: 0 0 0 0;
-  width:100%;
+  width:98.5%;
+  height:400px;
+  padding: 4px 4px;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
-
+button, input[type='submit']{
+  cursor: pointer;
+}
+#after-msg, #submit-index{
+display: none;
+}
+#swap-btn{
+margin: 8px 0 0 8px;
+}
+#submit-index{
+font-size: 18px;
+padding: 16px 36px;
+}
+.small{
+font-family: monospace;
+font-size: 11px;
+}
+.textarea{
+width:99%;
+height: 100px;
+vertical-align: text-top;
+margin: 0 0 0 0;
+}
+.user-input{
+margin: 8px 0 0 8px;
+}
+.sorry{
+padding: 0 0 0 8px;
+}
+.send-msg-btn{
+font-size: 20px;
+margin: 0 auto;
+padding: 20px 40px;
+text-align: center;
+display: block;
+}
+.send-msg-div{
+width: 100%;
+}
+.hidden{
+visibility: hidden;
+}
 
 /* THEMES */
 
@@ -57,7 +64,6 @@ html{
   background-color: #000;
 }
 iframe{
-  padding: 4px 4px;
   background-color: #000;
   border:1px solid rgba(255,255,255,0.2);
 }
@@ -80,6 +86,26 @@ button, input[type='submit'], input[type='text']{
   color:#20C20E;
   background-color:#000;
   border:1px solid #20C20E;
+}
+::selection {
+  background-color: #20C20E;
+  color: #000;
+}
+::-moz-selection {
+  background-color: #20C20E;
+  color: #000;
+}
+::-o-selection {
+  background-color: #20C20E;
+  color: #000;
+}
+::-ms-selection {
+  background-color: #20C20E;
+  color: #000;
+}
+::-webkit-selection {
+  background-color: #20C20E;
+  color: #000;
 }
 
 

@@ -9,7 +9,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
     $msg = filter_input(INPUT_POST, 'Msg', FILTER_DEFAULT);
     if(trim($msg) != '' && trim($_SESSION['User']) != ''){
-        if (!file_put_contents('msgs2.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>" . "\n", FILE_APPEND | LOCK_EX)) {
+        if (!file_put_contents('msgs.html', "<div class='msg'>" . $_SESSION['User'] . ": " . filter_var($msg, FILTER_SANITIZE_STRING) . "</div>" . "\n", FILE_APPEND | LOCK_EX)) {
             echo "<div> Error: could not write to file. </div>";
         }
     }
@@ -46,16 +46,11 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
          "</button><br><br>".
          "<div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>";
 }?>
-<iframe id="preloaded-iframe" style="display:none;" src="msgs2.html?v1.2"></iframe>
-<iframe id="iframe" style="display:block;" src="msgs2.html?v1.1"></iframe>
+<iframe id="iframe" class="" style="display:block;" src="msgs.html" scrolling="no"></iframe>
   <script>
     var _iframe = document.getElementById('iframe');
     _iframe.onload = function () {
       _iframe.contentWindow.scrollTo( 0, 999999 );
-    }
-    var _pre = document.getElementById('preloaded-iframe');
-    _pre.onload = function () {
-      _pre.contentWindow.scrollTo( 0, 999999 );
     }
   </script>
 <br>
@@ -74,28 +69,17 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 
 <script>
   window.onload = function () {
-    var preloaded = document.getElementById('preloaded-iframe');
     var iframe = document.getElementById('iframe');
-    var everyNSec = 5;
     document.getElementById('msg-area').focus();
-    swapSrc();
-    setInterval(swapSrc, (everyNSec * 1000));
-    function swapSrc() {
-      function swap() {
-        if (preloaded.style.display == 'none') {
-          iframe.src = preloaded.src;
-          iframe.style.display = 'none';
-          preloaded.style.display = 'block';
-          preloaded.contentWindow.scrollTo( 0, 999999 );
-        } else {
-          preloaded.src = iframe.src;
-          iframe.style.display = 'block';
-          preloaded.style.display = 'none';
-          iframe.contentWindow.scrollTo( 0, 999999 );
-        }
+    reloadSrc(1);
+    function reloadSrc(delay) {
+      function reloadThis(_delay) {
+        iframe.src = (iframe.src == 'msgs.html' ? 'msgs.html?v1.1.1' : iframe.src);
+        iframe.contentWindow.scrollTo(0, 999999);
+        TweenLite.delayedCall(_delay, function () {
+          reloadThis(_delay);
+        });
       }
-      swap();
-      //TweenLite.delayedCall(0.5, swap);
     }
   }
 </script>
