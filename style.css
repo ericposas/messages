@@ -9,7 +9,7 @@ iframe{
   height:300px;
   padding: 4px 4px;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 button, input[type='submit']{
   cursor: pointer;
@@ -21,10 +21,7 @@ button, input[type='submit']{
 #posted-msgs-container{
   width:99%;
   height:250px;
-  overflow-y: hidden;
-}
-#after-msg, #submit-index{
-  display: none;
+  overflow-y: scroll;
 }
 #swap-btn{
   margin: 8px 0 0 8px;
@@ -84,7 +81,6 @@ textarea{
 }
 button, input[type='submit'], input[type='text']{
   font-family:monospace;
-  border:none;
   color:#20C20E;
   background-color:#000;
   border:1px solid #20C20E;
