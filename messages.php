@@ -107,3 +107,5 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 
   }
 </script>
+</body>
+</html>
