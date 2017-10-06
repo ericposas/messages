@@ -18,7 +18,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 
 <?php
 if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
-  echo "<style>.msg{ display: none; }#posted-msgs-container{ visibility:hidden; }</style>";
+  echo "<style>.msg, .userid{ display: none; }#posted-msgs-container{ visibility:hidden; }</style>";
 } ?>
 
 </head>
@@ -78,7 +78,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     if(msg_area && send_msg_btn){
       msg_area.focus();
       msg_area.value = '';
-      updateMessages();
+      updateMessages(true, false);
       send_msg_btn.addEventListener('click', postMessage);
     }
 
@@ -90,7 +90,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          updateMessages(true);
+          updateMessages(true, true);
           msg_area.focus();
           msg_area.value = '';
         }
@@ -98,19 +98,52 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       http.send(params);
     }
     
-    function updateMessages(scrollMsgs) {
-      var http = new XMLHttpRequest();
-      var cache_bust = new Date().getTime();
-      http.open("GET", "msgs.html?randstr="+cache_bust, true);
-      http.onreadystatechange = function () {
-        if(this.readyState == 4 && this.status == 200) {
-          posted_msgs.innerHTML = http.responseText;
-          if(scrollMsgs == true){
-            posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
+    function updateMessages(scrollMsgs, animateMsg) {
+      if(!window.currentlyTyping || window.currentlyTyping == false) {
+        var http = new XMLHttpRequest();
+        var cache_bust = new Date().getTime();
+        http.open("GET", "msgs.html?randstr=" + cache_bust, true);
+        http.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            posted_msgs.innerHTML = http.responseText;
+            if (scrollMsgs == true) {
+              scrollMsgsToTop();
+            }
+            if (animateMsg == true) {
+              animateByLetter();
+            }
           }
         }
+        http.send();
       }
-      http.send();
+    }
+    
+    function scrollMsgsToTop() {
+      posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
+    }
+
+    function animateByLetter() {
+      var msgs = document.getElementsByClassName('msg');
+      var msg = msgs[msgs.length - 1];
+      var chars = msg.getElementsByClassName('char');
+      animateCharacters(chars);
+    }
+
+    function animateCharacters(letters) {
+      if(!window.currentlyTyping || window.currentlyTyping == false){
+        window.currentlyTyping = true;
+        for(var i = 0; i < letters.length; i++) {
+          console.log(letters[i]);
+          TweenLite.from(letters[i], 0.2, {alpha: 0, delay: (0.02 * i),
+            onComplete: function (_letters,_i) {
+              if(_i == _letters.length-1){
+                window.currentlyTyping = false;
+              }
+            },
+            onCompleteParams: [letters,i]
+          });
+        }
+      }
     }
 
   }

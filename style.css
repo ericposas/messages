@@ -32,6 +32,14 @@ button, input[type='submit']{
   vertical-align: text-top;
   margin: 0 0 0 0;
 }
+.userid{
+  width:100%;
+}
+.msg, .userid{
+  /*
+  display: inline-block;
+  */
+}
 .user-input{
   margin: 8px 0 0 8px;
 }
