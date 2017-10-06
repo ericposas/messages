@@ -5,8 +5,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
   $user = filter_input(INPUT_POST, 'User', FILTER_DEFAULT);
   $user = trim($user);
   $_SESSION['User'] = filter_var($user, FILTER_SANITIZE_STRING);
-}
-?>
+} ?>
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -19,8 +18,8 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 
 <?php
 if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
-    echo "<style>.msg{ display: none; }#posted-msgs-container,#iframe,#preloaded-iframe{ visibility:hidden; }</style>";
-}?>
+  echo "<style>.msg{ display: none; }#posted-msgs-container{ visibility:hidden; }</style>";
+} ?>
 
 </head>
 <body>
@@ -33,17 +32,19 @@ if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
 </script>
 <?php
 if(isset($_SESSION['User']) && !empty($_SESSION['User'])) {
-    echo "back</button><br><br>";
-}else{
-    echo "set username".
-         "</button><br><br>".
-         "<div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>";
-}?>
-<div id="posted-msgs-container">
-  <div id="posted-msgs"></div>
-</div>
-<br>
-<br>
+?>
+  back</button><br><br>
+<?php }else{ ?>
+  set username</button>
+   <br>
+   <br>
+   <div class='sorry'>Sorry, you need to set a username to see<br> or post a message.</div>
+<?php } ?>
+  <div id="posted-msgs-container">
+    <div id="posted-msgs"></div>
+  </div>
+  <br>
+  <br>
 <?php
 if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 ?>

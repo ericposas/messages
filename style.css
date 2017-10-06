@@ -3,14 +3,6 @@ html, body{
   overflow-x: hidden;
   margin: 0;
 }
-iframe{
-  margin: 0 0 0 0;
-  width:98.5%;
-  height:300px;
-  padding: 4px 4px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
 button, input[type='submit']{
   cursor: pointer;
 }
@@ -69,10 +61,6 @@ html{
   color: #20C20E;
   background-color: #000;
 }
-iframe{
-  background-color: #000;
-  border:1px solid rgba(255,255,255,0.2);
-}
 textarea{
   font-size:14px;
   color: #20C20E;
@@ -126,10 +114,6 @@ html{
   font-weight: 400;
   color: #FFF;
   background-color: #4ABDAC;
-}
-iframe{
-  border:none;
-  background-color: #F7B733;
 }
 .msg{
   color: #FFF;

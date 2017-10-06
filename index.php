@@ -16,13 +16,16 @@
         unset($_SESSION['User']);
     }
     if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
-        echo "<div class='user-input'>Current User: ".$_SESSION['User']."</div>".
-             "<form method='post' action=" . $_SERVER['PHP_SELF'] . ">".
-                "<input class='user-input' type='submit' name='logout' value='log out username'>".
-             "</form>".
-             "<br>";
-        echo "<form method=\"post\" action=\"messages.php\">";
-    }else{ ?>
+    ?>
+      <div class='user-input'>Current User: <?php echo $_SESSION['User']; ?></div>
+      <form method='post' action=<?php echo $_SERVER['PHP_SELF']; ?>>
+        <input class='user-input' type='submit' name='logout' value='log out username'>
+      </form>
+      <br>
+      <form method="post" action="messages.php">
+    <?php
+    }else{
+      ?>
       <form method="post" action="messages.php">
       <div class="user-input">Username:</div>
       <input class="user-input" id="username" type="text" name="User" value="">
