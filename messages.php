@@ -69,6 +69,12 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     var posted_msgs = document.getElementById('posted-msgs');
     var posted_msgs_container = document.getElementById('posted-msgs-container');
 
+    routineUpdateMsgs(); //update messages pane every 10 seconds
+    function routineUpdateMsgs() {
+      updateMessages();
+      TweenLite.delayedCall(10, routineUpdateMsgs);
+    }
+
     if(msg_area && send_msg_btn){
       msg_area.focus();
       msg_area.value = '';
