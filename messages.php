@@ -71,7 +71,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
 
     routineUpdateMsgs(); //update messages pane every 10 seconds
     function routineUpdateMsgs() {
-      updateMessages();
+      updateMessages(false);
       TweenLite.delayedCall(10, routineUpdateMsgs);
     }
 
@@ -90,7 +90,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          updateMessages();
+          updateMessages(true);
           msg_area.focus();
           msg_area.value = '';
         }
@@ -98,14 +98,16 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       http.send(params);
     }
     
-    function updateMessages() {
+    function updateMessages(scrollMsgs) {
       var http = new XMLHttpRequest();
       var cache_bust = new Date().getTime();
       http.open("GET", "msgs.html?randstr="+cache_bust, true);
       http.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200) {
           posted_msgs.innerHTML = http.responseText;
-          posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
+          if(scrollMsgs == true){
+            posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
+          }
         }
       }
       http.send();
