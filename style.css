@@ -36,9 +36,7 @@ button, input[type='submit']{
   width:100%;
 }
 .msg, .userid{
-  /*
-  display: inline-block;
-  */
+  font-size:14px;
 }
 .user-input{
   margin: 8px 0 0 8px;

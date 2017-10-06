@@ -18,7 +18,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 
 <?php
 if(!isset($_SESSION['User']) || empty($_SESSION['User'])) {
-  echo "<style>.msg, .userid{ display: none; }#posted-msgs-container{ visibility:hidden; }</style>";
+  echo "<style>.msg,.userid{ display: none; }#posted-msgs-container{ visibility:hidden; }</style>";
 } ?>
 
 </head>
@@ -117,7 +117,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
         http.send();
       }
     }
-    
+
     function scrollMsgsToTop() {
       posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
     }
