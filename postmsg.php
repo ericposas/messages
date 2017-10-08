@@ -18,11 +18,5 @@ if(isset($_POST['Msg']) && !empty($_POST['Msg'])) {
     }else{
       echo "OK";
     }
-
-    /*if (!file_put_contents('msgs.html', "<div class='userid'>" . $_SESSION['User'] . ": <div class='msg'>" . $cleanmsg . "</div></div>" . "\n", FILE_APPEND | LOCK_EX)) {
-      echo "Error: could not write to file.";
-    }else{
-      echo "OK";
-    }*/
   }
 }

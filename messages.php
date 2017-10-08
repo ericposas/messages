@@ -69,28 +69,28 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     var posted_msgs = document.getElementById('posted-msgs');
     var posted_msgs_container = document.getElementById('posted-msgs-container');
 
+    if(msg_area && send_msg_btn){
+      msg_area.focus();
+      msg_area.value = '';
+      updateMessages(true);
+      send_msg_btn.addEventListener('click', postMessage);
+    }
+
     routineUpdateMsgs(); //update messages pane every 10 seconds
     function routineUpdateMsgs() {
       updateMessages(false);
       TweenLite.delayedCall(10, routineUpdateMsgs);
     }
 
-    if(msg_area && send_msg_btn){
-      msg_area.focus();
-      msg_area.value = '';
-      updateMessages(true, false);
-      send_msg_btn.addEventListener('click', postMessage);
-    }
-
     function postMessage(e) {
       e.preventDefault();
       var http = new XMLHttpRequest();
-      var params = "Msg="+msg_area.value; //document.getElementById('msg-area').innerHTML;
+      var params = "Msg="+msg_area.value;
       http.open("POST", "postmsg.php", true);
       http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          updateMessages(true, true);
+          updateMessages(true);
           msg_area.focus();
           msg_area.value = '';
         }
@@ -98,52 +98,21 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       http.send(params);
     }
     
-    function updateMessages(scrollMsgs, animateMsg) {
-      if(!window.currentlyTyping || window.currentlyTyping == false) {
-        var http = new XMLHttpRequest();
-        var cache_bust = new Date().getTime();
-        http.open("GET", "msgs.html?randstr=" + cache_bust, true);
-        http.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            posted_msgs.innerHTML = http.responseText;
-            if (scrollMsgs == true) {
-              scrollMsgsToTop();
-            }
-            if (animateMsg == true) {
-              animateByLetter();
-            }
-          }
+    function updateMessages(scrollMsgs) {
+      var http = new XMLHttpRequest();
+      var cache_bust = new Date().getTime();
+      http.open("GET", "msgs.html?randstr=" + cache_bust, true);
+      http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          posted_msgs.innerHTML = http.responseText;
+          if (scrollMsgs == true) {scrollMsgsToTop();}
         }
-        http.send();
       }
+      http.send();
     }
 
     function scrollMsgsToTop() {
       posted_msgs_container.scrollTop = posted_msgs_container.scrollHeight;
-    }
-
-    function animateByLetter() {
-      var msgs = document.getElementsByClassName('msg');
-      var msg = msgs[msgs.length - 1];
-      var chars = msg.getElementsByClassName('char');
-      animateCharacters(chars);
-    }
-
-    function animateCharacters(letters) {
-      if(!window.currentlyTyping || window.currentlyTyping == false){
-        window.currentlyTyping = true;
-        for(var i = 0; i < letters.length; i++) {
-          console.log(letters[i]);
-          TweenLite.from(letters[i], 0.2, {alpha: 0, delay: (0.02 * i),
-            onComplete: function (_letters,_i) {
-              if(_i == _letters.length-1){
-                window.currentlyTyping = false;
-              }
-            },
-            onCompleteParams: [letters,i]
-          });
-        }
-      }
     }
 
   }
