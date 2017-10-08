@@ -79,7 +79,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
     routineUpdateMsgs(); //update messages pane every 10 seconds
     function routineUpdateMsgs() {
       updateMessages(false);
-      TweenLite.delayedCall(10, routineUpdateMsgs);
+      TweenLite.delayedCall(5, routineUpdateMsgs);
     }
 
     function postMessage(e) {
