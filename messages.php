@@ -14,6 +14,7 @@ if(isset($_POST['User']) && !empty($_POST['User'])) {
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>Message Log</title>
 <script src="utils.js"></script>
+<script src="howler.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <link href='style.css' rel='stylesheet'>
 
@@ -67,7 +68,10 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
   window.onload = function () {
     var app = {
       readmsgs : [],
-      animationInProgress : false
+      animationInProgress : false,
+      notification : new Howl({
+        src: ['notification.mp3']
+      })
     };
     var send_msg_btn = document.getElementById('send-msg-btn');
     var msg_area = document.getElementById('msg-area');
@@ -129,6 +133,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
           onComplete: function (_i,_chars) {
             if(_i == _chars.length-1){
               app.animationInProgress = false;
+              app.notification.play();
             }
           },
           onCompleteParams: [i,chars]
