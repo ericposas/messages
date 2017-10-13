@@ -81,10 +81,10 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       send_msg_btn.addEventListener('click', postMessage);
     }
 
-    routineUpdateMsgs(); //update messages pane every 10 seconds
+    routineUpdateMsgs(); //update messages pane every 5 seconds
     function routineUpdateMsgs() {
       updateMessages();
-      TweenLite.delayedCall(10, routineUpdateMsgs);
+      TweenLite.delayedCall(5, routineUpdateMsgs);
     }
 
     function postMessage(e) {
@@ -121,7 +121,7 @@ if(isset($_SESSION['User']) && !empty($_SESSION['User'])){
       }
       http.send();
     }
-    
+
     function animateByChar(chars) {
       app.animationInProgress = true;
       for(var i = 0; i < chars.length; i++){
